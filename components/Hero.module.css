@@ -1,0 +1,25 @@
+.hero{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.image{
+    /* width: 100%; */
+    margin: 0px auto;
+}
+
+.hero h1{
+    font-size: 2em;
+    color: darkgrey;
+    text-transform: uppercase;
+}
+
+.hero button{
+    background:gray;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 5px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+}

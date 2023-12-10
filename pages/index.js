@@ -1,34 +1,49 @@
-import { useEffect, useState } from "react"
-import Image from "next/image"
 import Hero from "@/components/Hero"
-
-export default function HomePage() {
-
-  // const [movieList, setMovieList] = useState([])
+import PopularMovie from "@/components/movies/PopularMovie"
+import axios from "axios"
 
 
-  // const movieDB = ()=> {
-  //   fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmUzN2FlNDcyMjhhYmUzNDAzZjExYWYwYmE5OTg3ZCIsInN1YiI6IjY0YjU5NTE5MGU0ZmM4NTE5ZWJhYzE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ws2eeZk8ZWn7kWwvVIsRdBtZafDGXRXAG8VaDsLUwQI',
-  //       'Accept': 'application/json'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data.results)
-  //     setMovieList(data.results)
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   movieDB()
-  // }, [])
-
+export default function HomePage({movies}) {
+// console.log(movies[0])
   return (
     <>
-      <Hero/>
+      <Hero />
+      <PopularMovie movies={movies}/>
     </>
   )
+}
+
+export async function getStaticProps() {
+  require('dotenv').config()
+
+  let movies =[]
+
+  const params = {
+    include_adult: false,
+    include_video: false,
+    language: 'en-US',
+    page: 1,
+    sort_by: 'popularity.desc',
+  };
+
+  const headers = {
+    Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+    accept: 'application/json',
+  };
+
+
+
+  await axios.get('https://api.themoviedb.org/3/movie/popular', { params, headers })
+    .then((response) => {
+      // console.log(response.data.results[0])
+      movies = response.data.results
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  return {
+    props:{movies}
+
+  }
 }

@@ -1,0 +1,13 @@
+.main__container{
+    background-color: gray;
+   text-align: center;
+}
+
+.main__container h1{
+    color: white;
+    padding: 20px 0px;
+}
+
+.movies__container{
+
+}

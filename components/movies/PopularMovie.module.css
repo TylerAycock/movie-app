@@ -1,13 +1,33 @@
-.main__container{
+.movie__container{
     background-color: gray;
    text-align: center;
+   width: 100%;
+   padding: 0px 20px;
 }
 
-.main__container h1{
-    color: white;
-    padding: 20px 0px;
+
+.movies{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    grid-gap: 20px;
 }
 
-.movies__container{
+@media screen and (max-width: 750px){
+    .movie__container .movies{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
+@media screen and (max-width: 650px){
+    .movie__container .movies{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px){
+    .movie__container .movies{
+        grid-template-columns: 1fr;
+    }
 }

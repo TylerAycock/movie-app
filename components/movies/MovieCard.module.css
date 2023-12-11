@@ -1,8 +1,13 @@
 .card{
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
+    background-color: white;
     gap: 20px;
-    background-color: wheat;
     max-width: 300px;
+    border-radius: 8px;
+}
+
+.image{
+    max-width: 100%;
+    border-radius: 8px;
 }

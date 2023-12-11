@@ -11,7 +11,7 @@ export default function MovieCard({ movie }) {
         year: 'numeric'
     })
 
-    const movieUrl = `movies/${movie.title}`
+    const movieUrl = `movies/${movie.id}`
     
     return (
         <Link href={movieUrl}>

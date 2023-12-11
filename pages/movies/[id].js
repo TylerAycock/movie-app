@@ -2,10 +2,10 @@ import axios from 'axios'
 require('dotenv').config()
 import MovieDetails from '@/components/movies/MovieDetails'
 
-export default function Movie({movie}) {
+export default function Movie({ movie }) {
 
     return (
-        <MovieDetails movie={movie}/>
+        <MovieDetails movie={movie} />
     )
 }
 

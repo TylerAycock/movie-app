@@ -3,20 +3,19 @@ import PopularMovie from "@/components/movies/PopularMovie"
 import axios from "axios"
 
 
-export default function HomePage({movies}) {
-// console.log(movies[0])
+export default function HomePage({ movies }) {
+
   return (
     <>
       <Hero />
-      <PopularMovie movies={movies}/>
+      <PopularMovie movies={movies} />
     </>
   )
 }
 
 export async function getStaticProps() {
-  require('dotenv').config()
 
-  let movies =[]
+  require('dotenv').config()
 
   const params = {
     include_adult: false,
@@ -31,19 +30,10 @@ export async function getStaticProps() {
     accept: 'application/json',
   };
 
-
-
-  await axios.get('https://api.themoviedb.org/3/movie/popular', { params, headers })
-    .then((response) => {
-      // console.log(response.data.results[0])
-      movies = response.data.results
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  let res = await axios.get('https://api.themoviedb.org/3/movie/popular', { params, headers })
+  const movies = res.data.results
 
   return {
-    props:{movies}
-
+    props: { movies }
   }
 }
